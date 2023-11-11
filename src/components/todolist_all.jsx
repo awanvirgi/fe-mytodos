@@ -5,18 +5,19 @@ import Card from "./card-todo";
 
 function TodolistAll() {
     const dispatch = useDispatch()
-    const { todos,isLoading } = useSelector((state) => state.todo)
-    useEffect(()=>{
+    const { todos, isLoading } = useSelector((state) => state.todo)
+    useEffect(() => {
         dispatch(getAllTodo())
-    },[])
+    }, [])
     return (
         <div className="p-3 flex flex-col gap-2 border-2 border-blue-400 sm:text-lg">
-            {todos.length != 0 ?
+            {!isLoading ? todos ?
                 todos.map((item) => (
                     <Card key={item.id} value={item.task} status={item.status} id={item.id} />
                 )) : (
                     <div className="text-center">Ayo mulai! Buat to-do list pertamamu dan nikmati setiap langkah menuju produktivitas</div>
-                )
+                ) :
+                <div className="text-center">Loading ...</div>
 
             }
         </div>

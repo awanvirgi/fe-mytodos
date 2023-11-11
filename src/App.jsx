@@ -6,6 +6,7 @@ import Login from "./pages/login";
 import Regitser from "./pages/register";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+  
   useEffect(() => {
     getToken()
   }, [isLogin])
